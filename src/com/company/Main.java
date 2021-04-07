@@ -1,19 +1,22 @@
 package com.company;
 
-import java.util.Scanner;
-
 public class Main {
 
     public static void main(String[] args) {
         BankAccount user = new BankAccount(40);
-        user.deposit(34);
+        user.deposit(30);
+        System.out.println("Текущий счёт: " + user.getAmount());
 
         while (true) {
             try {
-                System.out.println(user.withDraw(700));
-                break;
+                System.out.println(user.withDraw(100));
             } catch (LimitException e) {
                 e.printStackTrace();
+                try {
+                    System.out.println("Оставшаяся сумма: " + user.withDraw((int) user.getAmount()));
+                } catch (LimitException limitException) {
+                    limitException.printStackTrace();
+                }
                 break;
             }
         }

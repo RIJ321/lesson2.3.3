@@ -7,6 +7,7 @@ public class BankAccount {
     double downloadMoney;
 
     public BankAccount(double amount) {
+        System.out.println("Текущий счёт: " + amount);
         this.amount = amount;
     }
 
@@ -22,7 +23,7 @@ public class BankAccount {
 
     int withDraw(int takeMoney) throws LimitException {
         if (takeMoney > amount) {
-            throw new LimitException("REMAINING SUM IS MORE THAN CURRENT " + (amount - amount), amount);
+            throw new LimitException("DECIDED AMOUNT IS MORE THAN THE CURRENT " + amount, amount);
         }
         return (int) getAmount() - takeMoney;
     }
