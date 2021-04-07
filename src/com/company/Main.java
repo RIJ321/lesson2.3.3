@@ -5,18 +5,19 @@ public class Main {
     public static void main(String[] args) {
         BankAccount user = new BankAccount(40);
         user.deposit(30);
-        System.out.println("Текущий счёт: " + user.getAmount());
-
+        System.out.println("CURRENT AMOUNT "+user.getAmount());
         while (true) {
             try {
-                System.out.println(user.withDraw(100));
+                user.withDraw(100);
             } catch (LimitException e) {
-                e.printStackTrace();
                 try {
-                    System.out.println("Оставшаяся сумма: " + user.withDraw((int) user.getAmount()));
+                    System.out.println("Желаемая сумма для снятия со счёта: " + user.getTakeMoney());
+                    user.withDraw((int) user.getAmount());
+                    System.out.println("Доступная сумма для снятия со счёта: "+ user.getTakeMoney());
                 } catch (LimitException limitException) {
                     limitException.printStackTrace();
                 }
+                System.out.println(("Оставшаяся сумма: " + user.getAmount()));
                 break;
             }
         }
